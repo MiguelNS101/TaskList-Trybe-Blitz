@@ -4,13 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "posttest": "node ./test/restoreDb.js",
-    "test": "jest --runInBand --testTimeout=60000",
-    "test:mocha": "nyc --all --include models --include services --include controllers mocha test/unit/**/*.js --exit",
+    "test": "mocha ./tests/**/*$NAME*.test.js --exit",
     "start": "node src/index.js",
     "debug": "nodemon --ignore coverage index.js",
-    "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json . --ext .js, .jsx",
-    "restore": "node ./test/restoreDb.js"
+    "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json . --ext .js, .jsx"
   },
   "keywords": [],
   "author": "",
@@ -25,8 +22,11 @@
     "nodemon": "^2.0.18"
   },
   "devDependencies": {
+    "chai": "^4.3.6",
     "eslint": "^8.18.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.26.0"
+    "eslint-plugin-import": "^2.26.0",
+    "mocha": "^10.0.0",
+    "sinon": "^14.0.0"
   }
 }
