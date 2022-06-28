@@ -41,3 +41,27 @@ describe('A função getAll do service Task', () => {
     expect(response).to.be.an('array');
   });
 });
+
+describe('A função createTask do service Task', () => {
+  const tasks = {
+    task_id: 1,
+    task_name: 'martelo',
+    task_message: 'martelo',
+    status: 'status1',
+    task_date: 'data',
+  };
+
+  beforeEach(() => {
+    sinon.stub(taskModel, 'createTask').resolves(tasks);
+  });
+
+  afterEach(() => {
+    taskModel.createTask.restore();
+  });
+
+  it('Retorna objeto', async () => {
+    const [name, message] = ['martelo', 'martelo'];
+    const response = await taskService.createTask({ name, message });
+    expect(response).to.be.an('object');
+  });
+});
