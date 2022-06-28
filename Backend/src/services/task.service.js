@@ -10,10 +10,10 @@ const createTask = async (name, message) => {
   return data;
 };
 
-const update = async (id, name, quantity) => {
+const update = async (id, name, message) => {
   const find = await Task.findById();
   if (find !== undefined) {
-    await Task.editTask(id, name, quantity);
+    await Task.editTask(id, name, message);
     return true;
   }
   return false;
