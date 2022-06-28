@@ -1,12 +1,12 @@
 const connection = require('./connection');
 
 const getAll = async () => {
-  const [products] = await connection.execute('SELECT * FROM Tasks');
-  return products;
+  const [resp] = await connection.execute('SELECT * FROM Tasks');
+  return resp;
 };
 
 const getAllStatus = async () => {
-  const [products] = await connection.execute(
+  const [resp] = await connection.execute(
     `
       SELECT T.task_id, T.task_name, T.task_message, T.task_date, s.status_name
       FROM Tasks AS T
@@ -14,14 +14,14 @@ const getAllStatus = async () => {
       ON s.status_id = T.task_status_id
       ORDER BY task_id;`,
   );
-  return products;
+  return resp;
 };
 
 const findById = async (taskId) => {
   const query = 'SELECT * FROM Tasks WHERE task_id=?';
 
-  const [productData] = await connection.execute(query, [taskId]);
-  return productData;
+  const [resp] = await connection.execute(query, [taskId]);
+  return resp;
 };
 
 const createTask = async (taskName, taskMessage) => {
