@@ -1,12 +1,13 @@
 const express = require('express');
 const TaskController = require('./controllers/task.controller');
-const StatusController = require('./controllers/task.controller');
+const StatusController = require('./controllers/status.controller');
 const validationTask = require('./middlewares/task.middleware');
 
 const router = express.Router();
 
-router.get('/getTasks', TaskController.getAll);
-router.get('/getStatus', StatusController.getAll);
+router.get('/getTasks', TaskController.getTasks);
+router.get('/getStatus', StatusController.getStatus);
+
 router.post(
   '/createTask',
   validationTask.validateName,
