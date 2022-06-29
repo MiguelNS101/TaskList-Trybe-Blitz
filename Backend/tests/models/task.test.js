@@ -58,10 +58,8 @@ describe('A função findById do model Task', () => {
   afterEach(() => {
     taskModel.findById.restore();
   });
-  describe('id 1', () => {
-    it('Retorna object', async () => {
-      const response = await taskModel.findById(1);
-      expect(response).to.be.an('object');
-    });
+  it('Retorna object', async () => {
+    const response = await taskModel.findById(1);
+    expect(response).to.be.an('object');
   });
 });
