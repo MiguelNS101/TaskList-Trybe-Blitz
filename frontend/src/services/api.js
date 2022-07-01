@@ -7,6 +7,11 @@ export const getTasks = async () => {
   return resp;
 };
 
+export const getStatus = async () => {
+  const resp = await axios.get(`${URL}/getStatus`);
+  return resp;
+};
+
 export const createTask = async (title, message) => {
   const body = {
     title,
@@ -34,6 +39,6 @@ export const editStatus = async (id, status) => {
 };
 
 export const deleteTask = async (id) => {
-  const resp = await axios.destroy(`${URL}/deleteTask/${id}`);
+  const resp = await axios.delete(`${URL}/deleteTask/${id}`);
   return resp;
 };

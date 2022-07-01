@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 import React from 'react';
-import { getTasks } from '../services/api';
+import { getTasks, deleteTask } from '../services/api';
 import TaskTitle from './TaskTitle';
 import TaskMessage from './TaskMessage';
 import TaskStatus from './TaskStatus';
@@ -19,6 +19,11 @@ class Tasklist extends React.Component {
 
   getTasks = async () => {
     this.setState({ tasks: await getTasks() });
+  };
+
+  delTask = async (id) => {
+    await deleteTask(id);
+    this.getTasks();
   };
 
   render() {
@@ -42,6 +47,9 @@ class Tasklist extends React.Component {
                   <TaskMessage message={task_message} />
                   <TaskStatus status={status_name} />
                   <h5>{task_date}</h5>
+                  <button type="button" onClick={async () => this.delTask(task_id)}>
+                    X
+                  </button>
                 </div>
               ),
             )
