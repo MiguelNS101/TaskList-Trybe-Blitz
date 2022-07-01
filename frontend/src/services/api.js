@@ -12,18 +12,18 @@ export const getStatus = async () => {
   return resp;
 };
 
-export const createTask = async (title, message) => {
+export const createTask = async (name, message) => {
   const body = {
-    title,
+    name,
     message,
   };
   const resp = await axios.post(`${URL}/createTask`, body);
   return resp;
 };
 
-export const editTask = async (id, title, message) => {
+export const editTask = async (id, name, message) => {
   const body = {
-    title,
+    name,
     message,
   };
   const resp = await axios.put(`${URL}/updateTask/${id}`, body);
