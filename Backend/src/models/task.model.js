@@ -40,7 +40,7 @@ const editTask = async (taskId, taskName, taskMessage) => {
   await connection.execute(query, [taskName, taskMessage, taskId]);
 };
 
-const editStatus = async (statusId, taskId) => {
+const editStatus = async (taskId, statusId) => {
   const query = `
     UPDATE Tasks SET task_status_id=? WHERE task_id=?
       `;

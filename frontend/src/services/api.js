@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const URL = 'http://localhost:3000';
+const URL = 'http://localhost:3002';
 
 export const getTasks = async () => {
   const resp = await axios.get(`${URL}/getTasks`);

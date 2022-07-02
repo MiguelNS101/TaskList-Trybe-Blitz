@@ -1,7 +1,7 @@
 const Task = require('../models/task.model');
 
 const getAll = async () => {
-  const data = await Task.getAllStatus();
+  const data = await Task.getAll();
   return data;
 };
 

@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import React from 'react';
 import {
-  getTasks, deleteTask, createTask, editTask,
+  getTasks, deleteTask, createTask, editTask, getStatus,
 } from '../services/api';
 import TaskTitle from './TaskTitle';
 import TaskMessage from './TaskMessage';
@@ -12,6 +12,7 @@ class Tasklist extends React.Component {
     super();
     this.state = {
       tasks: [],
+      status: [],
       newTitle: '',
       newMessage: '',
     };
@@ -22,6 +23,7 @@ class Tasklist extends React.Component {
 
   componentDidMount() {
     this.getTasks();
+    this.getStatus();
   }
 
   handleChange({ target }) {
@@ -35,6 +37,11 @@ class Tasklist extends React.Component {
   getTasks = async () => {
     this.setState({ tasks: [] });
     this.setState({ tasks: await getTasks() });
+  };
+
+  getStatus = async () => {
+    this.setState({ status: [] });
+    this.setState({ status: await getStatus() });
   };
 
   addTask = async () => {
@@ -58,7 +65,7 @@ class Tasklist extends React.Component {
 
   render() {
     const {
-      tasks, newTitle, newMessage,
+      tasks, newTitle, newMessage, status,
     } = this.state;
     const taskList = tasks.data;
     return (
@@ -98,12 +105,12 @@ class Tasklist extends React.Component {
                 task_name,
                 task_message,
                 task_date,
-                status_name,
+                task_status_id,
               }) => (
                 <div key={task_id}>
                   <div>
                     <TaskTitle title={task_name} />
-                    <TaskStatus status={status_name} />
+                    <TaskStatus status={task_status_id} id={task_id} statusList={status.data} />
                   </div>
                   <TaskMessage message={task_message} />
                   <div>
