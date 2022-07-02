@@ -12,7 +12,7 @@ class TaskMessage extends React.Component {
     const { data } = this.state;
     return (
       <form>
-        <h1>{data.message}</h1>
+        <p data-testid="message">{data.message}</p>
       </form>
     );
   }

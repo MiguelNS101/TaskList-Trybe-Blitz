@@ -93,7 +93,7 @@ class Tasklist extends React.Component {
     return (
       <main>
         <h1>Task List</h1>
-        <form>
+        <form data-testid="createTask">
           <label htmlFor="newTitle">
             Titulo:
             <input
@@ -116,7 +116,7 @@ class Tasklist extends React.Component {
             Create
           </button>
         </form>
-        <div>
+        <div data-testid="sortTask">
           <label htmlFor="chooseSort">
             Choose Sorting method
             <select
@@ -130,7 +130,7 @@ class Tasklist extends React.Component {
             </select>
           </label>
         </div>
-        <section>
+        <section data-testid="taskList">
           {taskList !== undefined ? (
             taskList.sort(this.handleSort).map(
               ({

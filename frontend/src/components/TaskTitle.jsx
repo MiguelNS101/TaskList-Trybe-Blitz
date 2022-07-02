@@ -14,7 +14,7 @@ class TaskTitle extends React.Component {
     const { data } = this.state;
     return (
       <form>
-        <h1>{data.title}</h1>
+        <h1 data-testid="title">{data.title}</h1>
       </form>
     );
   }

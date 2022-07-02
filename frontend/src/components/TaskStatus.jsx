@@ -30,6 +30,7 @@ class TaskStatus extends React.Component {
         <select
           onChange={async ({ target }) => this.handleChange(target, data.id)}
           value={status}
+          data-testid="status"
         >
           {statusList !== undefined ? (
             statusList.map(
