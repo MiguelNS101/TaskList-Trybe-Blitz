@@ -10,13 +10,13 @@ services:
     depends_on:
       - database
     ports:
-      - 3000:3000
+      - 3002:3002
     environment:
       MYSQL_USER: root
       MYSQL_PASSWORD: password
       MYSQL_HOST: database
       MYSQL_DATABASE: TaskData
-      PORT: '3000'
+      PORT: '3002'
 
   database:
     container_name: taskDatabase
@@ -28,6 +28,16 @@ services:
       MYSQL_ROOT_PASSWORD: 'password'
     ports:
       - 3001:3306
+
+  frontend-server:
+    container_name: taskFrontend
+    build: frontend/
+    depends_on:
+      - backend-server
+    environment:
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      - 3000:3000
 
 networks:
   default:

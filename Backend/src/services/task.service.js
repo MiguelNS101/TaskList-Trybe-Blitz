@@ -1,7 +1,7 @@
 const Task = require('../models/task.model');
 
 const getAll = async () => {
-  const data = await Task.getAllStatus();
+  const data = await Task.getAll();
   return data;
 };
 
@@ -11,7 +11,7 @@ const createTask = async (name, message) => {
 };
 
 const update = async (id, name, message) => {
-  const find = await Task.findById();
+  const find = await Task.findById(id);
   if (find !== undefined) {
     await Task.editTask(id, name, message);
     return true;
@@ -20,7 +20,7 @@ const update = async (id, name, message) => {
 };
 
 const updateStatus = async (id, status) => {
-  const find = await Task.findById();
+  const find = await Task.findById(id);
   if (find !== undefined) {
     await Task.editStatus(id, status);
     return true;
