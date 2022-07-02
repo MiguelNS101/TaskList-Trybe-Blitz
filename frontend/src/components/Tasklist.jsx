@@ -15,10 +15,12 @@ class Tasklist extends React.Component {
       status: [],
       newTitle: '',
       newMessage: '',
+      sortBy: 'task_id',
     };
     this.handleChange = this.handleChange.bind(this);
     this.addTask = this.addTask.bind(this);
     this.edit = this.edit.bind(this);
+    this.chooseSorting = this.chooseSorting.bind(this);
   }
 
   componentDidMount() {
@@ -63,9 +65,29 @@ class Tasklist extends React.Component {
     this.setState({ newTitle: '', newMessage: '' });
   };
 
+  handleSort = (a, b) => {
+    const { sortBy } = this.state;
+    if (sortBy === 'task_status_id') {
+      return a[sortBy] - b[sortBy];
+    }
+
+    if (a[sortBy] > b[sortBy]) {
+      return 1;
+    }
+    if (a[sortBy] < b[sortBy]) {
+      return -1;
+    }
+    return 0;
+  };
+
+  async chooseSorting(target) {
+    this.setState({ sortBy: target.value });
+    await this.getTasks();
+  }
+
   render() {
     const {
-      tasks, newTitle, newMessage, status,
+      tasks, newTitle, newMessage, status, sortBy,
     } = this.state;
     const taskList = tasks.data;
     return (
@@ -90,16 +112,27 @@ class Tasklist extends React.Component {
               onChange={this.handleChange}
             />
           </label>
-          <button
-            type="button"
-            onClick={this.addTask}
-          >
+          <button type="button" onClick={this.addTask}>
             Create
           </button>
         </form>
+        <div>
+          <label htmlFor="chooseSort">
+            Choose Sorting method
+            <select
+              onChange={({ target }) => this.chooseSorting(target)}
+              value={sortBy}
+              name="chooseSort"
+            >
+              <option value="task_name">Ordem alfabetica</option>
+              <option value="task_id">Data</option>
+              <option value="task_status_id">Status</option>
+            </select>
+          </label>
+        </div>
         <section>
           {taskList !== undefined ? (
-            taskList.map(
+            taskList.sort(this.handleSort).map(
               ({
                 task_id,
                 task_name,
@@ -110,7 +143,11 @@ class Tasklist extends React.Component {
                 <div key={task_id}>
                   <div>
                     <TaskTitle title={task_name} />
-                    <TaskStatus status={task_status_id} id={task_id} statusList={status.data} />
+                    <TaskStatus
+                      status={task_status_id}
+                      id={task_id}
+                      statusList={status.data}
+                    />
                   </div>
                   <TaskMessage message={task_message} />
                   <div>
