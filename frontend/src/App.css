@@ -1,38 +1,80 @@
-.App {
+* {
+  font-family: Roboto Mono , monospace;
+}
+
+[data-theme="light"],
+:root:not([data-theme="dark"]) {
+  --primary: #5e35b1;
+  --primary-hover: #512da8;
+  --primary-focus: rgba(94, 53, 177, 0.125);
+  --primary-inverse: #FFF;
+}
+
+header {
+  background-color: #5e35b1;
+  box-shadow: rgba(50, 50, 93, 0.25) 0 6px 12px -2px , rgba(0, 0, 0, 0.3) 0 3px 7px -3px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+header h1 {
+  color: white;
+  padding: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.titleStatus {
+  align-items: center;
+  justify-content: space-around;
+  display: flex;
+  margin-bottom: 2%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.titleStatus h2 {
+  margin: 0;
+}
+
+.taskButtons {
+  align-items: center;
+  justify-content: space-around;
+  display: flex;
+  margin-bottom: 2%;
+}
+
+.taskButtons button {
+  margin: 2%;
+}
+
+.taskCard {
+  height: auto;
+  width: 45%;
+  margin: 2%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-around;
 }
 
-.App-link {
-  color: #61dafb;
+.taskList {
+  align-items: stretch;
+  justify-content: space-around;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 2%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+.messageDate {
+  margin: 3%;
+}
+
+.create {
+  margin: 3%;
+}
+
+.sorting {
+  margin: 3%;
+}
+
+@media ( max-width : 1000px ) { 
+  .taskCard {
+    width: 90%;
+    margin: 2%;
   }
 }
