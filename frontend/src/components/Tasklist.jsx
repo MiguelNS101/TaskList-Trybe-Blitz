@@ -67,10 +67,9 @@ class Tasklist extends React.Component {
 
   handleSort = (a, b) => {
     const { sortBy } = this.state;
-    if (sortBy === 'task_status_id' && sortBy === 'task_id') {
+    if (sortBy === 'task_status_id' || sortBy === 'task_id') {
       return a[sortBy] - b[sortBy];
     }
-
     if (a[sortBy] > b[sortBy]) {
       return 1;
     }
